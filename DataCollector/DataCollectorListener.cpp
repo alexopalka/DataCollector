@@ -158,7 +158,6 @@ void DataCollectorListener::onFrame(const Controller& controller) {
 			organizedFingers[8] = rIndex;
 			organizedFingers[9] = rPinkie;
 
-
 			// list of hands based about the 2 hands that we now have.
 			// This sets other attributes from teh detected hand such as positioning 
 			// and other important data
@@ -176,7 +175,7 @@ void DataCollectorListener::onFrame(const Controller& controller) {
 			organizedHands[1].fingers()[3] = organizedFingers[8];
 			organizedHands[1].fingers()[4] = organizedFingers[9];
 
-			// WHEW now that we have created 2 handLists that contain the fingers
+			// Now that we have created 2 handLists that contain the fingers
 			// in order on the hand from left 2 right we can perform the necessary stuff that we want too;
 
 			// Vector Array of Tip Positions
@@ -222,8 +221,30 @@ void DataCollectorListener::onFrame(const Controller& controller) {
 			xDiffFingers[6] = (rMiddle.tipPosition().x  - rIndex.tipPosition().x)*-1;
 			xDiffFingers[7] = (rIndex.tipPosition().x - rPinkie.tipPosition().x)*-1;
 
-			// x-Difference calculated now we need to calcualte 
-			// the anges between all the fingers. 
+			// Now that we have created 3 arrays with the finger tipPositions from left to right
+			// these three arrays are the fingers of the left hand, right hand, complete list respectivly
+			float yDifflHand[4];
+			float yDiffrHand[4];
+			float yDiffFingers[9];
+			// now get x differences for Lhand
+			yDifflHand[0] = (lPinkie.tipPosition().y  - lIndex.tipPosition().y)*-1;
+			yDifflHand[1] = (lIndex.tipPosition().y   - lMiddle.tipPosition().y)*-1;
+			yDifflHand[2] = (lMiddle.tipPosition().y  - lPointer.tipPosition().y)*-1;
+			yDifflHand[3] = (lPointer.tipPosition().y - lThumb.tipPosition().y)*-1;
+			// now get x differences for rhand
+			yDiffrHand[0] = (rThumb.tipPosition().y  - rPointer.tipPosition().y)*-1;
+			yDiffrHand[1] = (rPointer.tipPosition().y   - rMiddle.tipPosition().y)*-1;
+			yDiffrHand[2] = (rMiddle.tipPosition().y  - rIndex.tipPosition().y)*-1;
+			yDiffrHand[3] = (rIndex.tipPosition().y - rPinkie.tipPosition().y)*-1;
+			// now get the x difference for both hands
+			yDiffFingers[0] = (lPinkie.tipPosition().y  - lIndex.tipPosition().y)*-1;
+			yDiffFingers[1] = (lIndex.tipPosition().y   - lMiddle.tipPosition().y)*-1;
+			yDiffFingers[2] = (lMiddle.tipPosition().y  - lPointer.tipPosition().y)*-1;
+			yDiffFingers[3] = (lPointer.tipPosition().y - lThumb.tipPosition().y)*-1;
+			yDiffFingers[4] = (rThumb.tipPosition().y  - rPointer.tipPosition().y)*-1;
+			yDiffFingers[5] = (rPointer.tipPosition().y   - rMiddle.tipPosition().y)*-1;
+			yDiffFingers[6] = (rMiddle.tipPosition().y  - rIndex.tipPosition().y)*-1;
+			yDiffFingers[7] = (rIndex.tipPosition().y - rPinkie.tipPosition().y)*-1;
 		}
 	}
 }
