@@ -245,6 +245,20 @@ void DataCollectorListener::onFrame(const Controller& controller) {
 			yDiffFingers[5] = (rPointer.tipPosition().y   - rMiddle.tipPosition().y)*-1;
 			yDiffFingers[6] = (rMiddle.tipPosition().y  - rIndex.tipPosition().y)*-1;
 			yDiffFingers[7] = (rIndex.tipPosition().y - rPinkie.tipPosition().y)*-1;
+
+			// This gets the Angle between adjacent fingers for the Left Hand
+			float lHandfingersAngle[4];
+			lHandfingersAngle[0] = organizedFingers[0].direction().angleTo(organizedFingers[1].direction());
+			lHandfingersAngle[1] = organizedFingers[1].direction().angleTo(organizedFingers[2].direction());
+			lHandfingersAngle[2] = organizedFingers[2].direction().angleTo(organizedFingers[3].direction());
+			lHandfingersAngle[3] = organizedFingers[3].direction().angleTo(organizedFingers[4].direction());
+			// This gets the Angle between adjacent fingers for the Right Hand
+			float rHandfingersAngle[4];
+			rHandfingersAngle[0] = organizedFingers[5].direction().angleTo(organizedFingers[6].direction());
+			rHandfingersAngle[1] = organizedFingers[6].direction().angleTo(organizedFingers[7].direction());
+			rHandfingersAngle[2] = organizedFingers[7].direction().angleTo(organizedFingers[8].direction());
+			rHandfingersAngle[3] = organizedFingers[8].direction().angleTo(organizedFingers[9].direction());
+
 		}
 	}
 }
